@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Value Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid #b0c4de;
+            font-family: 'Open Sans', sans-serif;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 2px solid #0073e6;
+            width: 130px;
+            background-color: #e0ffff;
+            color: #00008b;
+            font-family: 'Roboto', sans-serif;
+        }
+        button {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            background-color: #4682b4;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #5a9bd3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e6e6fa;
+            font-size: 1.5em;
+            color: #4b0082;
+        }
+        .input-label {
+            font-weight: bold;
+            color: #333333;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <label class="input-label" for="min-value">Min value</label><br>
+            <input type="number" id="min-value" step="any" placeholder="Min value">
+        </div>
+        <div>
+            <label class="input-label" for="max-value">Max value</label><br>
+            <input type="number" id="max-value" step="any" placeholder="Max value">
+        </div>
+        <button onclick="generateRandomValue()">Submit</button>
+        <div id="result">Your random value from the selected range is: </div>
+    </div>
+    <script>
+        function generateRandomValue() {
+            const minValue = parseFloat(document.getElementById('min-value').value);
+            const maxValue = parseFloat(document.getElementById('max-value').value);
+            if (!isNaN(minValue) && !isNaN(maxValue) && minValue <= maxValue) {
+                const randomValue = (Math.random() * (maxValue - minValue) + minValue).toFixed(2);
+                document.getElementById('result').innerHTML = `Your random value from the selected range is: ${randomValue}`;
+            } else {
+                document.getElementById('result').innerHTML = 'Please enter valid minimum and maximum values.';
+            }
+        }
+    </script>
+</body>
+</html>
